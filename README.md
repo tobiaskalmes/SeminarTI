@@ -1,0 +1,4 @@
+SeminarTI
+=========
+
+Seminar Theoretische Informatik
