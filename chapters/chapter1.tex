@@ -1,0 +1,47 @@
+\chapter{Einleitung}
+\section{NP-Vollständigkeit}
+Eine Sprache B ist \textbf{NP-Vollst\"andig} wenn gilt:
+\begin{enumerate}
+	\item $B \in NP$
+	\item $\forall A \in NP: A \prec_p B$
+\end{enumerate}
+
+Notiz:\\
+$A \prec_p B$ : $A$ ist polynomialzeitreduzierbar auf $B$
+
+\section{Polynomialzeitreduktion}
+Eine Sprache $A$ ist polynomialzeitreduzierbar auf Sprache $B$, $A \prec_p B$, wenn eine in polynomialer Zeit berechenbare Funktion $f:\Sigma*->\Sigma*$ existiert, für die gilt:\\
+$\forall w:$
+	$w \in A \iff f(w) \in B$
+
+Die Funktion $f$ heißt dann Polynomialzeitreduktion von $A$ nach $B$.
+
+\section{Definition 3SAT}
+Spezialform des Erf\"ullbarkeitsproblems
+\begin{itemize}
+	\item Symbol(literal):\\
+	$x$ oder $\overline{x}$
+	\item Klausel(clause):\\
+	$(x_1 \lor \overline{x_2} \lor \overline{x_3} \lor x_4)$
+	\item CNF-Formel(cnf-formula - conjunctive normal form):\\
+	$(x_1 \lor \overline{x_2} \lor \overline{x_3} \lor x_4) \land (x_3 \lor \overline{x_5} \lor x_6) \land (x_3 \lor \overline{x_6})$
+	\item 3CNF-Formel(3cnf-formula):\\
+	$(x_1 \lor \overline{x_2} \lor \overline{x_3}) \land (x_3 \lor \overline{x_5} \lor x_6) \land (x_3 \lor \overline{x_6} \lor x_4) \land (x_4 \lor x_5 \lor x_6)$
+\end{itemize}
+
+$3SAT = \left\{ \right. \langle \phi \rangle | \phi$ ist eine erfüllbare 3CNF-Formel$\left. \right\}$
+
+$\phi = 1 \iff \forall c_j$: mindestens ein Literal ist $true$ 
+
+\chapter{Hamilton-Pfad-Problem}
+\section{Definition}
+
+\section{Beweis}
+\subsection{Gerichtet}
+
+\subsection{Ungerichtet}
+
+\chapter{SUBSET-SUM-Problem}
+\section{Definition}
+
+\section{Beweis}
