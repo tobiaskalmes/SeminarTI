@@ -35,7 +35,11 @@ $\phi = 1 \iff \forall c_j$: mindestens ein Literal ist $true$
 
 \chapter{Hamilton-Pfad-Problem}
 \section{Definition}
-\TODO{machen}
+\begin{itemize}
+	\item Geht durch jeden Knoten genau einmal
+	\item Startet in s
+	\item Endet in t
+\end{itemize}
 
 \section{Beweis}
 \subsection{Gerichtet}
@@ -59,6 +63,7 @@ $\phi = 1 \iff \forall c_j$: mindestens ein Literal ist $true$
 \begin{center}
 	\includegraphics[width=14cm]{images/hampath/4}
 \end{center}
+$\left<3k+1\right>$ Knoten
 
 \subsubsection{Zus\"atzliche Knoten wenn $x_i$ in $c_j$ ist}
 \begin{center}
@@ -80,12 +85,78 @@ $\phi = 1 \iff \forall c_j$: mindestens ein Literal ist $true$
 	\includegraphics[width=14cm]{images/hampath/8}
 \end{center}
 
+\subsubsection{Laufzeit}
+Notiz: Offentsichlich nicht polynomial
+
 \subsection{Ungerichtet}
 \TODO{muss der auch rein?}
 
 \chapter{SUBSET-SUM-Problem}
 \section{Definition}
-\TODO{machen}
+\begin{itemize}
+	\item Integer-Arithmetik
+	\item Menge von Nummern: $x_1,...,x_k$
+	\item Ziel $t$
+	\item Kann $t$ durch eine Teilmenge erreicht werden?
+\end{itemize}
 
 \section{Beweis}
 3SAT $\prec_p$ SUBSET-SUM
+
+$\phi:$ Boolesche Formel\\
+$x_1, x_2,...,x_l$
+$c_1, c_2,...,c_k$ Teilausdr\"ucke
+
+\subsection{Gesucht}
+$\prec_p: \phi \mapsto \left<S,t\right>$
+
+$\phi: (x_1 \lor \overline{x_2} \lor x_3) \land (x_2 \lor x_3 \lor ...) \land ... \land (\overline{x_3} \lor ... \lor ...)$
+
+Notiz: $c_1, c_2, c_k$ dran schreiben
+
+\subsection{Annahme}
+Es existiert eine Konfiguration für die $\phi$ erf\"ullt ist.
+
+$\Rightarrow$ Subset bauen\\
+	$y_i$ iff $x_i=true$ else $z_i$
+	
+$\Rightarrow$ $t=11...1133...33$\\
+Notiz: l mal $1$ und k mal $3$
+
+$\Rightarrow$ F\"uge solange $g_i$ unf $h_i$ hinzu bis das Target t erreicht ist.
+
+\begin{tabular}{c | c c c c c c | c c c c}
+ & 1 & 2 & 3 & 4 & ... & l & $c_1$ & $c_2$ & ... & $c_k$ \\
+\hline
+$y_1$ & 1 & 0 & 0 & 0 & ... & 0 & 1 & 0 & ... & 0 \\ 
+$z_1$ & 1 & 0 & 0 & 0 & ... & 0 & 0 & 0 & ... & 0 \\
+$y_2$ &   & 1 & 0 & 0 & ... & 0 & 0 & 1 & ... & 0 \\
+$z_2$ &   & 1 & 0 & 0 & ... & 0 & 1 & 0 & ... & 0 \\
+$y_3$ &   &   & 1 & 0 & ... & 0 & 1 & 1 & ... & 0 \\
+$z_3$ &   &   & 1 & 0 & ... & 0 & 0 & 0 & ... & 1 \\
+... &   &   &   &   & ... &   &   &   & ... &   \\
+$y_l$ &   &   &   &   &  & 1 & 0 & 0 & ... & 0 \\
+$z_l$ &   &   &   &   &  & 1 & 0 & 0 & ... & 0 \\
+\hline
+$g_1$ &   &   &   &   &  & 1 & 0 & 0 & ... & 0 \\
+$h_1$ &   &   &   &   &  & 1 & 0 & 0 & ... & 0 \\
+$g_2$ &   &   &   &   &  &   & 1 & 0 & ... & 0 \\
+$h_2$ &   &   &   &   &  &   & 1 & 0 & ... & 0 \\
+... &   &   &   &   & ... &   &   &   & ... &   \\
+$g_k$ &   &   &   &   &  &   &   &   &  & 1 \\
+$h_k$ &   &   &   &   &  &   &   &   &  & 1 \\
+\hline
+\hline
+t & 1 & 1 & 1 & 1 &... & 1 & 3 & 3 & ... & 3\\
+\end{tabular}
+
+Notiz: Zeigen, dass $\phi$ erf\"ullbar ist mit einem subset von S dass sich auf t summiert.
+
+Notiz: $\forall c_j:$ Mindestens eine Variable von $c_j$ muss $1$ sein, da maximal $2$ von $g_j$ und $h_j$ kommen k\"onnen.
+
+Notiz: $\phi=true$ iff $\forall c_j: c_j=true$ 
+$\Rightarrow$ reduzierbar
+
+\subsection{Laufzeit}
+Tabelle hat etwa eine Gr\"oße von $(l + k)^2$\\
+Jeder Eintrag ist leicht zu berechnen $\Rightarrow O(n^2)$

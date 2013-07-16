@@ -17,8 +17,8 @@ Class=LaTeXView
 Document=chapters\chapter1.tex
 
 [Frame0_View0,0]
-TopLine=6
-Cursor=1270
+TopLine=66
+Cursor=3042
 
 [Frame1]
 Flags=0
@@ -32,11 +32,11 @@ NormalPos.top=26
 NormalPos.right=722
 NormalPos.bottom=690
 Class=LaTeXView
-Document=chapters\title.tex
+Document=Document.tex
 
 [Frame1_View0,0]
 TopLine=0
-Cursor=248
+Cursor=367
 
 [Frame2]
 Flags=0
@@ -50,11 +50,11 @@ NormalPos.top=26
 NormalPos.right=722
 NormalPos.bottom=690
 Class=LaTeXView
-Document=Document.tex
+Document=chapters\title.tex
 
 [Frame2_View0,0]
 TopLine=0
-Cursor=260
+Cursor=248
 
 [SessionInfo]
 FrameCount=3

@@ -2,7 +2,7 @@
 \defcounter {refsection}{0}\relax 
 \select@language {ngerman}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Inhaltsverzeichnis}{ii}{section*.1}
+\contentsline {chapter}{Inhaltsverzeichnis}{i}{section*.1}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {1}Einleitung}{1}{chapter.1}
 \defcounter {refsection}{0}\relax 
@@ -36,6 +36,8 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{This situation cannot occur}{7}{section*.9}
 \defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Laufzeit}{7}{section*.10}
+\defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.2.2}Ungerichtet}{7}{subsection.2.2.2}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {3}SUBSET-SUM-Problem}{8}{chapter.3}
@@ -43,3 +45,9 @@
 \contentsline {section}{\numberline {3.1}Definition}{8}{section.3.1}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.2}Beweis}{8}{section.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.1}Gesucht}{8}{subsection.3.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.2}Annahme}{8}{subsection.3.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.3}Laufzeit}{9}{subsection.3.2.3}
