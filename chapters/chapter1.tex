@@ -10,7 +10,7 @@ Notiz:\\
 $A \prec_p B$ : $A$ ist polynomialzeitreduzierbar auf $B$
 
 \section{Polynomialzeitreduktion}
-Eine Sprache $A$ ist polynomialzeitreduzierbar auf Sprache $B$, $A \prec_p B$, wenn eine in polynomialer Zeit berechenbare Funktion $f:\Sigma*->\Sigma*$ existiert, für die gilt:\\
+Eine Sprache $A$ ist polynomialzeitreduzierbar auf Sprache $B$, $A \prec_p B$, wenn eine in polynomialer Zeit berechenbare Funktion $f:\Sigma^* \to \Sigma^*$ existiert, für die gilt:\\
 $\forall w:$
 	$w \in A \iff f(w) \in B$
 
@@ -19,14 +19,15 @@ Die Funktion $f$ heißt dann Polynomialzeitreduktion von $A$ nach $B$.
 \section{Definition 3SAT}
 Spezialform des Erf\"ullbarkeitsproblems
 \begin{itemize}
-	\item Symbol(literal):\\
-	$x$ oder $\overline{x}$
-	\item Klausel(clause):\\
-	$(x_1 \lor \overline{x_2} \lor \overline{x_3} \lor x_4)$
+	\item Literal:\\
+	$x_i$ oder $\overline{x_i}$
+	\item Variable:\\
+	$x_i$ (l: Anzahl der Variablen)
+	\item Klausel:\\
+	$(x_1 \lor \overline{x_2} \lor \overline{x_3} \lor x_4)$ (k: Anzahl der Klauseln)
 	\item CNF-Formel(cnf-formula - conjunctive normal form):\\
 	$(x_1 \lor \overline{x_2} \lor \overline{x_3} \lor x_4) \land (x_3 \lor \overline{x_5} \lor x_6) \land (x_3 \lor \overline{x_6})$
-	\item 3CNF-Formel(3cnf-formula):\\
-	$(x_1 \lor \overline{x_2} \lor \overline{x_3}) \land (x_3 \lor \overline{x_5} \lor x_6) \land (x_3 \lor \overline{x_6} \lor x_4) \land (x_4 \lor x_5 \lor x_6)$
+	\item $\phi$: $(x_1 \lor \overline{x_2} \lor \overline{x_3}) \land (\overline{x_2} \lor x_4 \lor ...) \land ... \land (\overline{x_3} \lor ... \lor ...)$
 \end{itemize}
 
 $3SAT = \left\{ \right. \langle \phi \rangle | \phi$ ist eine erfüllbare 3CNF-Formel$\left. \right\}$
@@ -41,15 +42,18 @@ $\phi = 1 \iff \forall c_j$: mindestens ein Literal ist $true$
 	\item Endet in t
 \end{itemize}
 
-\section{Beweis}
-\subsection{Gerichtet}
-3SAT $\prec_p$ HAMPATH
-\subsubsection{Darstellung $x_i$}
+Notiz: Gesucht: Pfad von $s$ nach $t$, der durch jeden knoten genau einmal geht.
+
+\section{Beweis Gerichtet}
+\subsection{Konstruktion von G}
+$\phi \to G$
+
+\subsubsection{Darstellung Variable $x_i$}
 \begin{center}
 	\includegraphics[width=14cm]{images/hampath/1}
 \end{center}
 
-\subsubsection{Darstellung $c_j$}
+\subsubsection{Darstellung Klausel $c_j$}
 \begin{center}
 	\includegraphics{images/hampath/2}
 \end{center}
@@ -59,26 +63,44 @@ $\phi = 1 \iff \forall c_j$: mindestens ein Literal ist $true$
 	\includegraphics[width=14cm]{images/hampath/3}
 \end{center}
 
-\subsubsection{Horizontale Struktur im Diamond}
+\subsubsection{Horizontale Struktur im Diamant}
 \begin{center}
 	\includegraphics[width=14cm]{images/hampath/4}
 \end{center}
 $\left<3k+1\right>$ Knoten
 
-\subsubsection{Zus\"atzliche Knoten wenn $x_i$ in $c_j$ ist}
+\subsubsection{Zus\"atzliche Kanten wenn $x_i$ in $c_j$ ist}
 \begin{center}
 	\includegraphics[width=14cm]{images/hampath/5}
 \end{center}
 
-\subsubsection{Zus\"atzliche Knoten wenn $\overline{x_i}$ in $c_j$ ist}
+Notiz: Am Beispiel von $\phi$ zeigen!
+
+\subsubsection{Zus\"atzliche Kanten wenn $\overline{x_i}$ in $c_j$ ist}
 \begin{center}
 	\includegraphics[width=14cm]{images/hampath/6}
 \end{center}
+
+\subsection{$\phi$ ist erf\"ullbar}
+
+Notiz: Zun\"achst werden die Knoten $c_j$ ignoriert.
+
+Notiz: Der Pfad geht von $s$ nach $t$ durch jeden Diamanten nach einander.
+
+Notiz: Um alle Knoten zu treffen muss der Pfad entweder zig-zaggen oder zag-ziggen.
 
 \subsubsection{Zig-zagging and Zag-zigging}
 \begin{center}
 	\includegraphics[width=14cm]{images/hampath/7}
 \end{center}
+
+Notiz: Zig-zagging wenn Variable $x_i=true$, Zag-zigging wenn Variable $x_i=false$
+
+Notiz: Jetzt fehlen nurnoch die Knoten $c_j$.
+
+Notiz: In jeder Klausel $c_j$ w\"ahlen wir einen Literal aus, dem wir $true$ zuweisen.
+
+Notiz: Jeder wahre Literal in einer Klausel ist nur eine Option für einen Umweg \"uber einen Klauselnoten. $\to$ Es wird immer nur ein Umweg zu jedem Klauselknoten genommen. $\to$ Knostruktion von $G$ ist beendet.
 
 \subsubsection{This situation cannot occur}
 \begin{center}
