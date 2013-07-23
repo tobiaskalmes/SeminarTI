@@ -12,12 +12,12 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
 NormalPos.right=722
-NormalPos.bottom=690
+NormalPos.bottom=507
 Class=LaTeXView
 Document=chapters\chapter1.tex
 
 [Frame0_View0,0]
-TopLine=66
+TopLine=71
 Cursor=3042
 
 [Frame1]
@@ -30,7 +30,7 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
 NormalPos.right=722
-NormalPos.bottom=690
+NormalPos.bottom=507
 Class=LaTeXView
 Document=Document.tex
 
@@ -48,7 +48,7 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=26
 NormalPos.right=722
-NormalPos.bottom=690
+NormalPos.bottom=507
 Class=LaTeXView
 Document=chapters\title.tex
 

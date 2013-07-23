@@ -45,6 +45,9 @@ $\phi = 1 \iff \forall c_j$: mindestens ein Literal ist $true$
 Notiz: Gesucht: Pfad von $s$ nach $t$, der durch jeden knoten genau einmal geht.
 
 \section{Beweis Gerichtet}
+\subsection{HAMPATH $\in$ NP}
+Notiz: Eine nichtdeterministische Turingmaschine rät das Ergebnis und Verwirft dann bzw. nimmt an.
+
 \subsection{Konstruktion von G}
 $\phi \to G$
 
@@ -100,15 +103,23 @@ Notiz: Jetzt fehlen nurnoch die Knoten $c_j$.
 
 Notiz: In jeder Klausel $c_j$ w\"ahlen wir einen Literal aus, dem wir $true$ zuweisen.
 
-Notiz: Jeder wahre Literal in einer Klausel ist nur eine Option für einen Umweg \"uber einen Klauselnoten. $\to$ Es wird immer nur ein Umweg zu jedem Klauselknoten genommen. $\to$ Knostruktion von $G$ ist beendet.
+Notiz: Jeder wahre Literal in einer Klausel ist nur eine Option für einen Umweg \"uber einen Klauselnoten. $\to$ Es wird immer nur ein Umweg zu jedem Klauselknoten genommen. $\to$ Konstruktion von $G$ ist beendet.
 
-\subsubsection{This situation cannot occur}
+\subsection{G hat einen HAMPATH}
+
+\begin{itemize}
+	\item HAMPATH muss normal sein, geht durch Diamanten von oben nach unten(ausgenommen von den Umwegen \"uber die Klauselknoten
+	\item zig-zag $\to$ $x_i = true$, zag-zig $\to$ $x_i = false$
+	\item Anhand dessen, wie der Umweg \"uber einen Klauselknoten genommen wird kann man erkennen welcher Literal der Klausel wahr ist
+	\item Hampath ist normal zeigen
+\end{itemize}
+
 \begin{center}
 	\includegraphics[width=14cm]{images/hampath/8}
 \end{center}
 
 \subsubsection{Laufzeit}
-Notiz: Offentsichlich nicht polynomial
+Notiz: Anhand des Graphen erl\"autern(Anzahl Knoten)
 
 \subsection{Ungerichtet}
 \TODO{muss der auch rein?}
@@ -116,46 +127,43 @@ Notiz: Offentsichlich nicht polynomial
 \chapter{SUBSET-SUM-Problem}
 \section{Definition}
 \begin{itemize}
-	\item Integer-Arithmetik
-	\item Menge von Nummern: $x_1,...,x_k$
-	\item Ziel $t$
-	\item Kann $t$ durch eine Teilmenge erreicht werden?
+	\item Integer-Arithmetik (dezimal)
+	\item Menge von Zahlen $S$: $x_1,...,x_k$
+	\item Target $t$
+	\item Kann $t$ durch ein Subset von $S$ erreicht werden?
 \end{itemize}
 
 \section{Beweis}
 3SAT $\prec_p$ SUBSET-SUM
 
-$\phi:$ Boolesche Formel\\
-$x_1, x_2,...,x_l$
-$c_1, c_2,...,c_k$ Teilausdr\"ucke
+$\phi$: $(x_1 \lor \overline{x_2} \lor \overline{x_3}) \land (\overline{x_2} \lor x_4 \lor ...) \land ... \land (\overline{x_3} \lor ... \lor ...)$
 
-\subsection{Gesucht}
-$\prec_p: \phi \mapsto \left<S,t\right>$
+\subsection{SUBSET-SUM $\in$ NP}
+Notiz: Eine nichtdeterministische Turingmaschine rät das Ergebnis und Verwirft dann bzw. nimmt an.
 
-$\phi: (x_1 \lor \overline{x_2} \lor x_3) \land (x_2 \lor x_3 \lor ...) \land ... \land (\overline{x_3} \lor ... \lor ...)$
-
-Notiz: $c_1, c_2, c_k$ dran schreiben
-
-\subsection{Annahme}
-Es existiert eine Konfiguration für die $\phi$ erf\"ullt ist.
-
-$\Rightarrow$ Subset bauen\\
-	$y_i$ iff $x_i=true$ else $z_i$
-	
-$\Rightarrow$ $t=11...1133...33$\\
-Notiz: l mal $1$ und k mal $3$
-
-$\Rightarrow$ F\"uge solange $g_i$ unf $h_i$ hinzu bis das Target t erreicht ist.
+\subsection{Konstruktion der Tabelle}
+\begin{itemize}
+	\item Elemente aus $S$ und die Zahl $t$ sind die Zeilen der Tabelle (in Dezimaldarstellung)
+	\item Die Zeilen oberhalb des Doppellinie sind $y_1, z_1, y_2, z_2,...,y_l, z_l$ und $g_1, h_1, g_2, h_2,..., g_k, h_k$
+	\item Unter der Doppellinie ist $t$, $l$ 1 gefolgt von $k$ 3
+	\item $S$ hat ein Paar $y_i, z_i$ f\"ur jede Variable $x_i$ in $\phi$
+	\item linke Seite: 1 gefolgt von $l-i$ 0
+	\item rechte Seite: $1 \iff c_j$ $x_i$ beinhaltet, $0 \iff c_j$ $\overline{x_i}$ beinhaltet
+	\item nicht gefüllte Stellen sind $0$
+	\item $g_j, h_j$ f\"ur jede Klausel $c_j$
+	\item $g_j = h_j$, 1 gefolgt von $k-j$ 0
+	\item Kein Carry m\"oglich
+\end{itemize}
 
 \begin{tabular}{c | c c c c c c | c c c c}
  & 1 & 2 & 3 & 4 & ... & l & $c_1$ & $c_2$ & ... & $c_k$ \\
 \hline
 $y_1$ & 1 & 0 & 0 & 0 & ... & 0 & 1 & 0 & ... & 0 \\ 
 $z_1$ & 1 & 0 & 0 & 0 & ... & 0 & 0 & 0 & ... & 0 \\
-$y_2$ &   & 1 & 0 & 0 & ... & 0 & 0 & 1 & ... & 0 \\
-$z_2$ &   & 1 & 0 & 0 & ... & 0 & 1 & 0 & ... & 0 \\
-$y_3$ &   &   & 1 & 0 & ... & 0 & 1 & 1 & ... & 0 \\
-$z_3$ &   &   & 1 & 0 & ... & 0 & 0 & 0 & ... & 1 \\
+$y_2$ &   & 1 & 0 & 0 & ... & 0 & 0 & 0 & ... & 0 \\
+$z_2$ &   & 1 & 0 & 0 & ... & 0 & 1 & 1 & ... & 0 \\
+$y_3$ &   &   & 1 & 0 & ... & 0 & 0 & 0 & ... & 0 \\
+$z_3$ &   &   & 1 & 0 & ... & 0 & 1 & 0 & ... & 1 \\
 ... &   &   &   &   & ... &   &   &   & ... &   \\
 $y_l$ &   &   &   &   &  & 1 & 0 & 0 & ... & 0 \\
 $z_l$ &   &   &   &   &  & 1 & 0 & 0 & ... & 0 \\
@@ -172,12 +180,25 @@ $h_k$ &   &   &   &   &  &   &   &   &  & 1 \\
 t & 1 & 1 & 1 & 1 &... & 1 & 3 & 3 & ... & 3\\
 \end{tabular}
 
-Notiz: Zeigen, dass $\phi$ erf\"ullbar ist mit einem subset von S dass sich auf t summiert.
+\subsection{Annahme}
+Es existiert eine Konfiguration für die $\phi$ erf\"ullt ist.
 
-Notiz: $\forall c_j:$ Mindestens eine Variable von $c_j$ muss $1$ sein, da maximal $2$ von $g_j$ und $h_j$ kommen k\"onnen.
+\begin{itemize}
+	\item W\"ahle $y_i$ wenn Variable $x_i$ wahr ist, ansonsten $z_i$
+	\item Summe ergibt nur 1 auf der linken Seite, auf der rechten Seite nur 1 bis 3
+	\item $g$ und $h$ w\"ahlen bis $t$ erreicht
+\end{itemize}
 
-Notiz: $\phi=true$ iff $\forall c_j: c_j=true$ 
-$\Rightarrow$ reduzierbar
+\subsection{Annahme}
+Ein Subset von $S$ ergibt $t$.
+
+\begin{itemize}
+	\item $y_i$ oder $z_i$ um 1 f\"ur linke Seite zu bekommen
+	\item Wenn $y_i$ im Subset dann $x_i = true$, ansonsten $false$
+	\item Summe der rechten Seite ist immer 3, maximal 2 k\"onnen von $g$ und $h$ kommen, daher alle $c_j$ wahr
+	\item Wenn $y_i$ dann ist $x_i$ in $c_j$ und wird $true$ gesetzt, wenn $z_i$ dann $\overline{x_i}$ in $c_j$ und $x_i$ wird aus $false$ gesetzt
+	\item Daher ist $\phi$ wahr
+\end{itemize}
 
 \subsection{Laufzeit}
 Tabelle hat etwa eine Gr\"oße von $(l + k)^2$\\
